@@ -21,10 +21,13 @@ def checklist(request, flight_category):
     quest = Question.objects.filter(flight_category__flight_categories = flight_category)
     # choices = Choices.objects.all()
     category_name = FlightCategories.objects.get(flight_categories = flight_category)
+
+    error_message = "Please ensure you have selected one option for each question otherwise the form will not submit"
+    
     context = {
         "flight_category_name": category_name,
         "questions": quest,
-        # "choices": choices
+        "error_message": error_message
     }
     return HttpResponse(template.render(context, request))
 

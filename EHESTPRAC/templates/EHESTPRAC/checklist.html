@@ -10,7 +10,7 @@
         <h1>EHEST Pre-flight Risk Assessment Checklist</h1>
         <h1>{{ flight_category_name }}</h1>
         <div class = "fullContainer">
-            <form action="results/" method="post">
+            <form action="results/" method="post" name="mainForm">
                 {% for question in questions %}
 
                     <div class = "questionContainer">
@@ -47,8 +47,11 @@
                     <br />
                 {% endfor %}
 
-                <input type="submit" name="submit" value="Get Selected Values" />
+                <div class = submitButton>
+                    <input type="submit" name="submit" value="Get Selected Values" />
                 <!-- Alert for not all boxes selected -->
+                    <div class = "errorMessage">{{ error_message }}</div>
+                </div>
             </form>
         </div> 
     </body>
