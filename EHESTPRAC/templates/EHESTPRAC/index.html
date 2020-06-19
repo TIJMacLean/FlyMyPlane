@@ -5,12 +5,12 @@
         <link rel="stylesheet" type="text/css" href="{% static 'EHESTPRAC/style.css' %}">
     </head>
     <body>
-        Hello index
+        <h1>Flight Category Choices</h1>
         <br />
-        <ul>
+        <ul style = "text-align: center">
             {% for page in pages %}
                 <li><a href="{% url 'EHESTPRAC:checklist' page.flight_categories %}">{{ page.flight_categories }}</a></li>
             {% endfor %}
-            </ul>
+        </ul>
     </body>
 </html>
