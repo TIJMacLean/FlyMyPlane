@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <!-- Header -->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'EHESTPRAC/style.css' %}">
+    </head>
+    <body>
+        Hello index
+        <br />
+        <ul>
+            {% for page in pages %}
+                <li><a href="{% url 'EHESTPRAC:checklist' page.flight_categories %}">{{ page.flight_categories }}</a></li>
+            {% endfor %}
+            </ul>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+{% load filter_question %}
+
+<html>
+    <head>
+        <!-- Author: Tom MacLean -->
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'EHESTPRAC/style.css' %}">
+    </head>
+    <body>
+        <h1>EHEST Pre-flight Risk Assessment Checklist</h1>
+        <h1>{{ flight_category_name }}</h1>
+            {{ questions }}
+        <div class = "fullContainer">
+            <form action="results/" method="post">
+                {% for question in questions %}
+
+                    <div class = "questionContainer">
+                        {% with question.question_text|split:" - " as parts %}
+                            {% if parts.2 %}
+                                <h4>{{ parts.0 }}</h4>
+                                <h2>{{ parts.1 }}</h2>
+                                <h3>{{ parts.2 }}</h3>
+                            {% else %}
+                                <h2>{{ parts.0 }}</h2>
+                                <h3>{{ parts.1 }}</h3>
+                            {% endif %}
+                        {% endwith %}
+
+                        <div class = "answerContainer">
+                            {% csrf_token %}
+                            <br />
+                            <!-- order -->
+                            {% for choice in question.choices_set.all %}
+                                <input type="radio" name="choices{{question.id}}" id="choices{{question.id}}_{{choice.id}}" value="{{ choice.score }}" required />
+                                <div class = "box">
+                                    <label for = "choices{{question.id}}_{{choice.id}}">
+                                        <div class = "question_box">{{ choice.choice_text }}</div>
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class = "mitigationContainer">
+                            <!-- Mitigate -->
+                        </div>
+                        
+                    </div>
+                    <br />
+                {% endfor %}
+
+                <input type="submit" name="submit" value="Get Selected Values" />
+                <!-- Alert for not all boxes selected -->
+            </form>
+        </div> 
+    </body>
+</html>
