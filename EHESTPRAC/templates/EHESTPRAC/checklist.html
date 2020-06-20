@@ -28,12 +28,15 @@
                         <div class = "answerContainer">
                             {% csrf_token %}
                             <br />
-                            <!-- order -->
                             {% for choice in question.choices_set.all %}
-                                <input type="radio" name="choices{{question.id}}" id="choices{{question.id}}_{{choice.id}}" value="{{ choice.score }}" required />
+                                {% if choice.score == 0 %}
+                                    <input type="radio" name="choices{{question.id}}" id="choices{{question.id}}_{{choice.id}}" value="{{ choice.score }}" checked="checked" required />
+                                {% else %}
+                                    <input type="radio" name="choices{{question.id}}" id="choices{{question.id}}_{{choice.id}}" value="{{ choice.score }}" required />
+                                {% endif %}
                                 <div class = "box">
                                     <label for = "choices{{question.id}}_{{choice.id}}">
-                                        <div class = "question_box">{{ choice.choice_text }}</div>
+                                        <div class = "question_box">{{ choice }}</div>
                                     </label>
                                 </div>
                             {% endfor %}
@@ -49,8 +52,6 @@
 
                 <div class = submitButton>
                     <input type="submit" name="submit" value="Get Selected Values" />
-                <!-- Alert for not all boxes selected -->
-                    <div class = "errorMessage">{{ error_message }}</div>
                 </div>
             </form>
         </div> 

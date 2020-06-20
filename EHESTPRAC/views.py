@@ -18,16 +18,14 @@ def index(request):
 
 def checklist(request, flight_category):
     template = loader.get_template('EHESTPRAC/checklist.html')
-    quest = Question.objects.filter(flight_category__flight_categories = flight_category)
-    # choices = Choices.objects.all()
+    quest = Question.objects.filter(flight_category__flight_categories = flight_category).order_by("question_text")
+    choices = Choices.objects.all().order_by("score")
     category_name = FlightCategories.objects.get(flight_categories = flight_category)
-
-    error_message = "Please ensure you have selected one option for each question otherwise the form will not submit"
     
     context = {
         "flight_category_name": category_name,
         "questions": quest,
-        "error_message": error_message
+        "choices": choices
     }
     return HttpResponse(template.render(context, request))
 
@@ -41,11 +39,18 @@ def results(request, flight_category):
             choices[question_id] = request.POST[request_key]
     num_questions = len(choices)
     risk, flight_score, risk_numeric, risk_numeric_as_percentage = score(choices, num_questions)
+    if risk == "Acceptable risk":
+        background_colour = 'green'
+    elif risk == "Caution":
+        background_colour = 'yellow'
+    elif risk == "High risk":
+        background_colour = 'red'
     context = {
         "score": flight_score,
         "num_qs": num_questions,
         "risk": risk,
         "risk_numeric": risk_numeric,
-        "risk_numeric_as_percentage": risk_numeric_as_percentage
+        "risk_numeric_as_percentage": risk_numeric_as_percentage,
+        "background_colour": background_colour
     }
     return HttpResponse(template.render(context, request))

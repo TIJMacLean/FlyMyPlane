@@ -1,14 +1,14 @@
 <html>
-    <body>
+<body style = "background-color: {{ background_colour }}">
         <h1>Results</h1>
             <br />
         Score: {{ score }}
         <br />
-        Num qs: {{ num_qs }}
+        Number of questions: {{ num_qs }}
         <br />
-        Risk: {{ risk }}
+        <h2>Risk category: {{ risk }}</h2>
         <br />
-        Risk numeric: {{ risk_numeric }}
+        Risk numerical value: {{ risk_numeric }}
         <br />
         Risk as %: {{ risk_numeric_as_percentage }}
     </body>

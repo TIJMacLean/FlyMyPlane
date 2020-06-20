@@ -19,7 +19,7 @@ def score(choices, num_questions):
     nearest_sub_d = sub_d_rounded / 50
     risk_numeric = max_score * (nearest_sub_d ** 2) + 5
 
-    risk_numeric_as_percentage = (risk_numeric - 5) / max_score * 95 + 5
+    risk_numeric_as_percentage = round((risk_numeric - 5) / max_score * 95 + 5, 2)
 
 
     return risk, total_score, risk_numeric, risk_numeric_as_percentage
