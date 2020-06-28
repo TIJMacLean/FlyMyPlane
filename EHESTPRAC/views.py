@@ -33,9 +33,11 @@ def checklist(request, flight_category):
 def results(request, flight_category):
     template = loader.get_template('EHESTPRAC/results.html')
     choices = {}
+    questions = {}
     for request_key in request.POST:
         if request_key[:7] == "choices":
             question_id = request_key[7:]
+            questions[Question.objects.get(id = question_id).question_text] = Choices.objects.filter(question__id = question_id).get(score = request.POST[request_key])
             choices[question_id] = request.POST[request_key]
     num_questions = len(choices)
     risk, flight_score, risk_numeric, risk_numeric_as_percentage = score(choices, num_questions)
@@ -51,6 +53,7 @@ def results(request, flight_category):
         "risk": risk,
         "risk_numeric": risk_numeric,
         "risk_numeric_as_percentage": risk_numeric_as_percentage,
-        "background_colour": background_colour
+        "background_colour": background_colour,
+        "questions": questions
     }
     return HttpResponse(template.render(context, request))

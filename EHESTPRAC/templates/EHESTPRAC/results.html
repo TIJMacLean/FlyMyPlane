@@ -10,6 +10,19 @@
         <br />
         Risk numerical value: {{ risk_numeric }}
         <br />
-        Risk as %: {{ risk_numeric_as_percentage }}
+        Risk as percentage: {{ risk_numeric_as_percentage }}%
+        <br />
+        Caution boundary: 20%
+        <br />
+        High risk boundary: 40%
+        <br />
+        <br />
+        <h2>Question and answers</h2>
+        <br />
+        {% for question, answer in questions.items %}
+            <h4>{{ question }}</h4>
+            {{ answer }}<br />
+            <br />
+        {% endfor %}
     </body>
 </html>

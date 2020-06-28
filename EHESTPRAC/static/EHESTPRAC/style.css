@@ -56,7 +56,45 @@ h1 {
     text-align: center;
 }
 
-.box {
+.box0 {
+    width: 80%;
+    height: 120px;
+    bottom: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    padding: 5px;
+    background-color: rgb(175, 147, 109);
+    display: flex;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    font-weight: 900;
+    justify-content: center;
+    align-items: center;
+}
+
+.box1 {
+    width: 80%;
+    height: 120px;
+    bottom: 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+    padding: 5px;
+    background-color: rgb(175, 147, 109);
+    display: flex;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    font-weight: 900;
+    justify-content: center;
+    align-items: center;
+}
+
+.box2 {
     width: 80%;
     height: 120px;
     bottom: 20px;
@@ -99,10 +137,22 @@ input[type="radio"] {
     display: none;
 }
 
-input[type="radio"]:checked + .box {
+input[type="radio"]:checked + .box0 {
     display:visible;
     font-weight: 1000;
     background-color: green;
+}
+
+input[type="radio"]:checked + .box1 {
+    display:visible;
+    font-weight: 1000;
+    background-color: yellow;
+}
+
+input[type="radio"]:checked + .box2 {
+    display:visible;
+    font-weight: 1000;
+    background-color: red;
 }
 
 .submitButton {
