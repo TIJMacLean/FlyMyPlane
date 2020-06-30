@@ -20,8 +20,11 @@
         <h2>Question and answers</h2>
         <br />
         {% for question, answer in questions.items %}
-            <h4>{{ question }}</h4>
-            {{ answer }}<br />
+            <b>{{ question }}</b><br />
+            <b>{{ answer.0 }}</b><br />
+            Initial score: {{ answer.1 }}<br />
+            Mitigation: <br />
+            Final score:<br />
             <br />
         {% endfor %}
     </body>

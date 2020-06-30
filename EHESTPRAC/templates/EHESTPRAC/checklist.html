@@ -26,6 +26,30 @@
                             {% endif %}
                         {% endwith %}
 
+                        <div class = "mitigationContainer">
+                            <h3>Mitigation</h3>
+                            <textarea name = "mitigation{{question.id}}"></textarea>
+
+                            <div class = "mitigationBox1">
+                                <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_0" value="0"/>
+                                <div class = "mitigation_box1">
+                                    <label for = "mitigation{{question.id}}_0">
+                                        <div class = "mitigation_box">0</div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class = "mitigationBox2">
+                                <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_1" value="1"/>
+                                <div class = "mitigation_box2">
+                                    <label for = "mitigation{{question.id}}_1">
+                                        <div class = "mitigation_box">1</div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                         <div class = "answerContainer">
                             {% csrf_token %}
                             <br />
@@ -43,9 +67,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class = "mitigationContainer">
-                            <!-- Probably requires AJAX -->
-                        </div>
+                        
                         
                     </div>
                     <br />
