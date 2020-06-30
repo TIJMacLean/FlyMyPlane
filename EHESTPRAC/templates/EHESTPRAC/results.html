@@ -1,5 +1,5 @@
 <html>
-<body style = "background-color: '{{ background_colour }}'">
+<body style>
         <h1>Results</h1>
             <br />
         Score: {{ score }}
@@ -19,13 +19,21 @@
         <br />
         <h2>Question and answers</h2>
         <br />
-        {% for question, answer in questions.items %}
+
+        {% for question, question_data in data.items %}
             <b>{{ question }}</b><br />
-            <b>{{ answer.0 }}</b><br />
-            Initial score: {{ answer.1 }}<br />
-            Mitigation: <br />
-            Final score:<br />
+            <b>{{ question_data.Choice }}</b><br />
+            Initial score: {{ question_data.ChoiceScore }}<br />
+            {% if question_data.MitigationText %}
+                Mitigating factor: {{ question_data.MitigationText }}<br />
+            {% else %}
+                Mitigating factor: None<br />
+            {% endif %}
+            Mitigation: {{ question_data.MitigationScore }}<br />
+            Final score: {{ question_data.FinalScore }}<br />
             <br />
         {% endfor %}
+
+        {{ data }}
     </body>
 </html>

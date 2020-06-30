@@ -32,34 +32,35 @@ def checklist(request, flight_category):
 
 def results(request, flight_category):
     template = loader.get_template('EHESTPRAC/results.html')
-    choices = {}
-    questions = {}
+    data = {}
 
     for request_key in request.POST:
         if request_key[:7] == "choices":
             question_id = request_key[7:]
-            questions[Question.objects.get(id = question_id).question_text] = [
-                Choices.objects.filter(question__id = question_id).get(score = request.POST[request_key]),
-                request.POST[request_key]
-            ]
-            choices[question_id] = request.POST[request_key]
+            data[Question.objects.get(id = question_id).question_text].update({
+                "Choice": Choices.objects.filter(question__id = question_id).get(score = request.POST[request_key]),
+                "ChoiceScore": request.POST[request_key]
+            })
+        elif request_key[:10] == "mitigation":
+            question_id = request_key[10:]
+            data[Question.objects.get(id = question_id).question_text].update({
+                "MitigationScore": request.POST[request_key]
+            })
+        elif request_key[:8] == "mit_text":
+            question_id = request_key[8:]
+            data[Question.objects.get(id = question_id).question_text] = {
+                "MitigationText": request.POST[request_key]
+            }
 
-    num_questions = len(choices)
-    risk, flight_score, risk_numeric, risk_numeric_as_percentage = score(choices, num_questions)
-    if risk == "Acceptable risk":
-        background_colour = 'green'
-    elif risk == "Caution":
-        background_colour = 'yellow'
-    elif risk == "High risk":
-        background_colour = 'red'
+    num_questions = len(data)
+    risk, flight_score, risk_numeric, risk_numeric_as_percentage, data = score(num_questions, data)
+
     context = {
         "score": flight_score,
         "num_qs": num_questions,
         "risk": risk,
         "risk_numeric": risk_numeric,
         "risk_numeric_as_percentage": risk_numeric_as_percentage,
-        "background_colour": background_colour,
-        "questions": questions,
-        "choices": choices
+        "data": data
     }
     return HttpResponse(template.render(context, request))

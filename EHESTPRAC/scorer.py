@@ -1,11 +1,11 @@
-def score(choices, num_questions):
+def score(num_questions, data):
     max_score = 2 * num_questions
     caution_boundary = max_score * 0.2
     high_risk_boundary = max_score * 0.4
     
     total_score = 0
-    for scores in choices.values():
-        total_score += int(scores)
+    for scores in data.values():
+        total_score += int(scores['ChoiceScore'])
 
     if total_score < caution_boundary:
         risk = "Acceptable risk"
@@ -23,4 +23,4 @@ def score(choices, num_questions):
     #round((risk_numeric) / max_score * 95 + 5, 2)
 
 
-    return risk, total_score, risk_numeric, risk_numeric_as_percentage
+    return risk, total_score, risk_numeric, risk_numeric_as_percentage, data

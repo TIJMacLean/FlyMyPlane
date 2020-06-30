@@ -130,10 +130,12 @@ h1 {
     position: absolute;
     left: 67.5%;
     width: 17.5%;
-    height: 330px;
+    height: 250px;
+    text-align: center;
+    font-size: 24px;
 }
 
-.mitigationBox1 {
+.mitigationBox0 {
     position: relative;
     border-radius: 10px;
     padding: 5px;
@@ -144,7 +146,7 @@ h1 {
     top: 10px;
 }
 
-.mitigationBox2 {
+.mitigationBox1 {
     position: relative;
     border-radius: 10px;
     padding: 5px;
@@ -181,16 +183,22 @@ h1 {
     align-items: center;
 }
 
-input[type="radio"]:checked + .mitigationBox1 {
+input[type="radio"]:checked + .mitigationBox0 {
     display: visible;
     font-weight: 1000;
     background-color: green;
 }
 
+input[type="radio"]:checked + .mitigationBox1 {
+    display: visible;
+    font-weight: 1000;
+    background-color: yellow;
+}
+
 textarea {
     position: static;
     width: 100%;
-    height: 70%;
+    height: 100%;
     font-size: 24px;
     resize: none;
 }
@@ -232,8 +240,4 @@ input[type="radio"]:checked + .box2 {
 input[type="submit"] {
     height: 50px;
     width: 200px;
-}
-
-input[type="submit"]:valid + .errorMessage {
-    color:black;
 }

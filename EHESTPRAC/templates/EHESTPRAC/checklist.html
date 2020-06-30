@@ -27,25 +27,24 @@
                         {% endwith %}
 
                         <div class = "mitigationContainer">
-                            <h3>Mitigation</h3>
-                            <textarea name = "mitigation{{question.id}}"></textarea>
-
-                            <div class = "mitigationBox1">
-                                <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_0" value="0"/>
-                                <div class = "mitigation_box1">
-                                    <label for = "mitigation{{question.id}}_0">
-                                        <div class = "mitigation_box">0</div>
-                                    </label>
-                                </div>
+                            <strong>Mitigation</strong>
+                            <textarea name = "mit_text{{question.id}}" id = "mit_text{{question.id}}" ></textarea>
+                            <br />
+                            <br />
+                            <strong>New risk score  </strong>
+                            
+                            <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_0" value="0"/>
+                            <div class = "mitigationBox0">
+                                <label for = "mitigation{{question.id}}_0">
+                                    <div class = "mitigation_box1">0</div>
+                                </label>
                             </div>
-
-                            <div class = "mitigationBox2">
-                                <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_1" value="1"/>
-                                <div class = "mitigation_box2">
-                                    <label for = "mitigation{{question.id}}_1">
-                                        <div class = "mitigation_box">1</div>
-                                    </label>
-                                </div>
+                            
+                            <input type="radio" name="mitigation{{question.id}}" id="mitigation{{question.id}}_1" value="1"/>
+                            <div class = "mitigationBox1">
+                                <label for = "mitigation{{question.id}}_1">
+                                    <div class = "mitigation_box1">1</div>
+                                </label>
                             </div>
                             
                         </div>
