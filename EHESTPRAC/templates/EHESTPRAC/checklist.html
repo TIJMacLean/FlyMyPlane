@@ -10,6 +10,7 @@
         <h4 style = "text-align: center;"><a href = "../">Take me back to the choices page</a></h4>
         <h1>EHEST Pre-flight Risk Assessment Checklist</h1>
         <h1>{{ flight_category_name }}</h1>
+        <h3>Note: Will not count mitigations where no text is entered or the mitigated score is not lower than the initial score</h3>
         <div class = "fullContainer">
             <form action="results/" method="post" name="mainForm">
                 {% for question in questions %}

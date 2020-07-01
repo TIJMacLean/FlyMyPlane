@@ -1,21 +1,27 @@
 <html>
 <body style>
         <h1>Results</h1>
-            <br />
-        Score: {{ score }}
+        <a href="javascript:history.back()">Take me back to edit the form</a>
+        <br />
         <br />
         Number of questions: {{ num_qs }}
         <br />
-        <h2>Risk category: {{ risk }}</h2>
+        Mitigated Score: {{ mitigated_score }}
         <br />
-        Risk numerical value: {{ risk_numeric }}
+        Risk mitigated numerical value: {{ risk_numeric_mitigated }}
         <br />
-        Risk as percentage: {{ risk_numeric_as_percentage }}%
+        Risk mitigated as percentage: {{ risk_numeric_as_percentage_mitigated }}%
         <br />
         Caution boundary: 20%
         <br />
         High risk boundary: 40%
         <br />
+        <h2>Risk category: {{ risk }}</h2>
+        Initial Score: {{ flight_score }}
+        <br />
+        Risk numerical value: {{ risk_numeric }}
+        <br />
+        Risk as percentage: {{ risk_numeric_as_percentage }}%
         <br />
         <h2>Question and answers</h2>
         <br />
@@ -29,11 +35,9 @@
             {% else %}
                 Mitigating factor: None<br />
             {% endif %}
-            Mitigation: {{ question_data.MitigationScore }}<br />
-            Final score: {{ question_data.FinalScore }}<br />
+            Post-mitigation score: {{ question_data.MitigationScore }}<br />
             <br />
         {% endfor %}
 
-        {{ data }}
     </body>
 </html>

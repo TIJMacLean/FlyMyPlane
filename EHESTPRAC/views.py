@@ -53,14 +53,17 @@ def results(request, flight_category):
             }
 
     num_questions = len(data)
-    risk, flight_score, risk_numeric, risk_numeric_as_percentage, data = score(num_questions, data)
+    risk, flight_score, mitigated_score, risk_numeric, risk_numeric_as_percentage, risk_numeric_mitigated, risk_numeric_as_percentage_mitigated, data = score(num_questions, data)
 
     context = {
-        "score": flight_score,
+        "flight_score": flight_score,
+        "mitigated_score": mitigated_score,
         "num_qs": num_questions,
         "risk": risk,
         "risk_numeric": risk_numeric,
         "risk_numeric_as_percentage": risk_numeric_as_percentage,
+        "risk_numeric_mitigated": risk_numeric_mitigated,
+        "risk_numeric_as_percentage_mitigated": risk_numeric_as_percentage_mitigated,
         "data": data
     }
     return HttpResponse(template.render(context, request))

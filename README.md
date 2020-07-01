@@ -7,6 +7,7 @@ Will require a secret key to be added in web_project/settings
 
 - [] Sort out ordering of questions (change database to inc. question order?)
 - [x] Sort out ordering of answers
-- [] Add mitigation factors when risk greater than one
+- [x] Add mitigation factors when risk greater than one
 - [x] Add alert when form submission not valid
 - [x] Add yellow and red colours for choices
+- [] Make results page prettier
