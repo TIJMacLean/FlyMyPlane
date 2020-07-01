@@ -241,3 +241,23 @@ input[type="submit"] {
     height: 50px;
     width: 200px;
 }
+
+.resultsTable, tr, td {
+    margin: auto;
+    text-align: center;
+    padding: 2px;
+    font-size: 1.1em;
+}
+
+td {
+    width: 50%;
+}
+
+tr, td {
+    padding: 8px;
+}
+
+.responsesTable, tr, td {
+    margin: auto;
+    padding: 2px;
+}

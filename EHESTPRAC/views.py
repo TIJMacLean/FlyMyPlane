@@ -32,6 +32,7 @@ def checklist(request, flight_category):
 
 def results(request, flight_category):
     template = loader.get_template('EHESTPRAC/results.html')
+    category_name = FlightCategories.objects.get(flight_categories = flight_category)
     data = {}
 
     for request_key in request.POST:
@@ -55,11 +56,20 @@ def results(request, flight_category):
     num_questions = len(data)
     risk, flight_score, mitigated_score, risk_numeric, risk_numeric_as_percentage, risk_numeric_mitigated, risk_numeric_as_percentage_mitigated, data = score(num_questions, data)
 
+    if risk == "Acceptable Risk":
+        risk_category_colour = "green"
+    elif risk == "Caution":
+        risk_category_colour = "orange"
+    elif risk == "High Risk":
+        risk_category_colour = "red"
+
     context = {
         "flight_score": flight_score,
         "mitigated_score": mitigated_score,
         "num_qs": num_questions,
+        "flight_category_name": category_name,
         "risk": risk,
+        "risk_category_colour": risk_category_colour,
         "risk_numeric": risk_numeric,
         "risk_numeric_as_percentage": risk_numeric_as_percentage,
         "risk_numeric_mitigated": risk_numeric_mitigated,

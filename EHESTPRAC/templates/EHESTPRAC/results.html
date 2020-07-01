@@ -1,43 +1,66 @@
 <html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'EHESTPRAC/style.css' %}">
 <body style>
-        <h1>Results</h1>
-        <a href="javascript:history.back()">Take me back to edit the form</a>
-        <br />
-        <br />
-        Number of questions: {{ num_qs }}
-        <br />
-        Mitigated Score: {{ mitigated_score }}
-        <br />
-        Risk mitigated numerical value: {{ risk_numeric_mitigated }}
-        <br />
-        Risk mitigated as percentage: {{ risk_numeric_as_percentage_mitigated }}%
-        <br />
-        Caution boundary: 20%
-        <br />
-        High risk boundary: 40%
-        <br />
-        <h2>Risk category: {{ risk }}</h2>
-        Initial Score: {{ flight_score }}
-        <br />
-        Risk numerical value: {{ risk_numeric }}
-        <br />
-        Risk as percentage: {{ risk_numeric_as_percentage }}%
-        <br />
-        <h2>Question and answers</h2>
+        <h1>EHESTPRAC Results: {{ flight_category_name }}</h1>
+        <h2 style = "text-align: center; color: {{ risk_category_colour }};">Risk Category: {{ risk }}</h2>
+        <a style = "position: absolute; top: 10px;" href="javascript:history.back()">Take me back to edit the form</a>
         <br />
 
-        {% for question, question_data in data.items %}
-            <b>{{ question }}</b><br />
-            <b>{{ question_data.Choice }}</b><br />
-            Initial score: {{ question_data.ChoiceScore }}<br />
-            {% if question_data.MitigationText %}
-                Mitigating factor: {{ question_data.MitigationText }}<br />
-            {% else %}
-                Mitigating factor: None<br />
-            {% endif %}
-            Post-mitigation score: {{ question_data.MitigationScore }}<br />
-            <br />
-        {% endfor %}
+        <table class = "resultsTable">
+            <tr>
+                <td colspan = "2">Number of questions: {{ num_qs }}</td>
+            </tr>
+            <tr>
+                <td><b>Score after mitigation: {{ mitigated_score }}</td>
+                <td>Initial Score: {{ flight_score }}</td>
+            </tr>
+            <tr>
+                <td><b>Risk after mitigation as numerical value: {{ risk_numeric_mitigated }}</b></td>
+                <td>Risk as numerical value: {{ risk_numeric }}</td>
+            </tr>
+            <tr>
+                <td><b>Risk after mitigation as percentage: {{ risk_numeric_as_percentage_mitigated }}%</b></td>
+                <td>Risk as percentage: {{ risk_numeric_as_percentage }}%</td>
+            </tr>
+            <tr>
+                <td>Caution boundary: 20%</td>
+                <td>High risk boundary: 40%</td>
+            </tr>
+        </table>
+        <br />
+        
+        <br />
+        <h1>Question and answers</h1>
+        <br />
+
+        <table class = "responsesTable">
+                {% for question, question_data in data.items %}
+                    {% if forloop.counter0|divisibleby:2 %}
+                        <tr>
+                            <td>
+                    {% else %}
+                            <td>
+                    {% endif %}
+                                <b>{{ question }}</b><br />
+                                <b>Choice: {{ question_data.Choice }}</b><br />
+                                Initial score: {{ question_data.ChoiceScore }}<br />
+                                {% if question_data.MitigationText %}
+                                    Mitigating factor: {{ question_data.MitigationText }}<br />
+                                {% else %}
+                                    Mitigating factor: None<br />
+                                {% endif %}
+                                Post-mitigation score: {{ question_data.MitigationScore }}<br />
+                                <br />
+                    {% if forloop.counter0|divisibleby:2 %}
+                            </td>
+                    {% else %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
 
     </body>
 </html>
