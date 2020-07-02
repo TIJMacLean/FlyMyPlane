@@ -15,6 +15,7 @@ class Question(models.Model):
 
     flight_category = models.ManyToManyField(FlightCategories)
     question_text = models.CharField(max_length=100)
+    question_order = models.IntegerField(default=999)
 
 class Choices(models.Model):
     def __str__(self):

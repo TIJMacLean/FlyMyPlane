@@ -18,7 +18,7 @@ def index(request):
 
 def checklist(request, flight_category):
     template = loader.get_template('EHESTPRAC/checklist.html')
-    quest = Question.objects.filter(flight_category__flight_categories = flight_category).order_by("question_text")
+    quest = Question.objects.filter(flight_category__flight_categories = flight_category).order_by("question_order")
     choices = Choices.objects.all().order_by("score")
     category_name = FlightCategories.objects.get(flight_categories = flight_category)
     
