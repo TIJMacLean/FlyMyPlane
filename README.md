@@ -15,3 +15,4 @@ Will require a secret key to be added in web_project/settings
 - [] Delete mitigation when other choice selected (Probably AJAX)
 - [] Validation - Mitigation text if mitigation chosen (Probably AJAX)
 - [] Mitigation only appears if score of 1 or 2 is selected (Probably AJAX)
+- [] Edit such that only one question appears at a time (Probably AJAX)
