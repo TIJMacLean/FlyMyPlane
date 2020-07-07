@@ -1,6 +1,14 @@
 from django.db import models
 
 # Create your models here.
+class Owner(models.Model):
+    name = models.CharField(max_length = 50)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length = 15)
+
+    def __str__(self):
+        return self.name
+
 class Aircraft(models.Model):
     registration = models.CharField(max_length = 10)
     serial_number = models.IntegerField(default = 0)
@@ -11,7 +19,5 @@ class Aircraft(models.Model):
     home_base = models.CharField(max_length = 50)
     owner = models.ForeignKey(Owner, on_delete = models.CASCADE)
 
-class Owner(models.Model):
-    name = models.CharField(max_length = 50)
-    email_address = models.EmailField()
-    phone_number = models.CharField(max_length = 15)
+    def __str__(self):
+        return self.registration
