@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'EHESTPRAC.apps.EhestpracConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
