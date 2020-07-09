@@ -22,5 +22,6 @@ urlpatterns = [
     path('EHESTPRAC/', include('EHESTPRAC.urls')),
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-    path('', views.index, name='home')
+    path('', views.index, name='home'),
+    path('api/', include('api.urls'))
 ]

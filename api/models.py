@@ -9,6 +9,9 @@ class Owner(models.Model):
     def __str__(self):
         return self.name
 
+    def welcomer(self):
+        return "Welcome back, {}!".format(self.name)
+
 class Aircraft(models.Model):
     registration = models.CharField(max_length = 10)
     serial_number = models.IntegerField(default = 0)
